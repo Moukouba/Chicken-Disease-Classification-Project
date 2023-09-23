@@ -28,13 +28,13 @@ class PredictionPipeline:
         elif result[0] == 2:
             prediction = 'Salmonella'
         elif result[0] == 3:
-            prediction = 'Coccidiosis'
+            prediction = 'New_Castle_Disease' #'Coccidiosis'
             return [{ "image" : prediction}]
-        elif result[0] == 4:
-            prediction = 'New_Castle_Disease'
+        else:
+            prediction = 'Coccidiosis' #'New_Castle_Disease'
             return [{ "image" : prediction}]
         
-        
+
         
 
 
