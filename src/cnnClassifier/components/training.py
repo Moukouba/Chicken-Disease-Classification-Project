@@ -1,5 +1,6 @@
 from cnnClassifier.entity.config_entity import TrainingConfig
 import tensorflow as tf
+from keras.utils import custom_object_scope
 from pathlib import Path
 
 
