@@ -3,7 +3,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import os
 
-
+# {0: 'Salmonella', 1: 'Coccidiosis', 2: 'New_Castle_Disease', 3: 'Healthy'}
 
 class PredictionPipeline:
     def __init__(self,filename):
@@ -22,17 +22,19 @@ class PredictionPipeline:
         result = np.argmax(model.predict(test_image), axis=1)
         print(result)
 
-        if result[0] == 1:
+        if result[0] == 3:
             prediction = 'Healthy'
             return [{ "image" : prediction}]
         elif result[0] == 2:
-            prediction = 'Salmonella'
-        elif result[0] == 3:
-            prediction = 'New_Castle_Disease' #'Coccidiosis'
+            prediction = 'New_Castle_Disease'
+        elif result[0] == 1:
+            prediction = 'Coccidiosis'
             return [{ "image" : prediction}]
         else:
-            prediction = 'Coccidiosis' #'New_Castle_Disease'
+            prediction = 'Salmonella'
             return [{ "image" : prediction}]
+        
+    
         
 
         
