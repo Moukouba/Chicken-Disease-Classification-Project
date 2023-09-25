@@ -31,8 +31,11 @@ class PrepareBaseModel:
             for layer in model.layers[:-freeze_till]:
                 model.trainable = False
 
-        x = tf.keras.layers.GlobalAveragePooling2D()(model.output)
-        dense = tf.keras.layers.Dense(units=512, activation="relu")(x)
+        flatten_in = tf.keras.layers.Flatten()(model.output)
+        #x = tf.keras.layers.GlobalAveragePooling2D()(model.output)
+        #x = tf.keras.layers.GlobalMaxPooling2D()(model.output)
+
+        dense = tf.keras.layers.Dense(units=512, activation="relu")(flatten_in)
         dropout = tf.keras.layers.Dropout(rate=0.5)(dense)
         prediction = tf.keras.layers.Dense(units=classes, activation="softmax")(dropout)
 
